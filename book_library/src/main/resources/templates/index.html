@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library</title>
+</head>
+<body>
+    <div id="book-form">
+        <form th:action="@{/addBook}" th:object="${bookForm}" method="post">
+            <h2>Добавление книги</h2>
+            <table>
+                <tr>
+                    <td><label>Название книги:</label></td>
+                    <td><input type="text" th:field="*{title}"></td>
+                </tr>
+                <tr>    
+                    <td><label>Год выпуска:</label></td>
+                    <td><input type="number" th:field="*{year}"></td>
+                    
+                </tr>
+                <tr>
+                    <td><label>Кол-во страниц:</label></td>
+                    <td><input type="number" th:field="*{pages}"></td>
+                </tr>
+                <tr>
+                    <td><label>Автор:</label></td>
+                    <td><input type="text" th:field="*{author}"></td>
+                </tr>
+            </table>
+            <hr>
+            <input type="submit" value="Добавить"></input>
+        </form>
+    </div>
+
+    <div id="author-form">
+        <form th:action="@{/addAuthor}" th:object="${authorForm}" method="post">
+            <h2>Добавление Автора</h2>
+            <table>
+                <tr>
+                    <td><label>Имя:</label></td>
+                    <td><input type="text" th:field="*{firstName}"></td>
+                </tr>
+                <tr>    
+                    <td><label>Фамилия:</label></td>
+                    <td><input type="text" th:field="*{secondName}"></td>
+                    
+                </tr>
+                <tr>
+                    <td><label>Год рождения:</label></td>
+                    <td><input type="number" th:field="*{birthday}"></td>
+                </tr>   
+            </table>
+            <hr>
+            <input type="submit" value="Добавить"></input>
+        </form>
+    </div>
+
+    <h1>Библиотека (<span th:text="${booksCount}">0</span>)</h1>
+
+    <form th:action="@{/getByTitle}" method = "get">
+        <input type="text" th:name="title">
+        <input type="submit" value="Поиск">
+    </form>
+    <hr>
+
+    <div id="book-list">
+        <div th:each="book : ${books}">
+            <a th:href="@{/getBook(id=${book.id})}" class="book-link" th:text="${book.title}"></a>
+        </div>
+    </div>
+
+    <h1>Авторы (<span th:text="${authorsCount}">0</span>)</h1>
+    <hr>
+    <div id="author-list">
+        <div th:each="author : ${authors}">
+            <a th:href="@{/getAuthor(id=${author.id})}" class="author-link" th:text="|${author.firstName} ${author.secondName}|"></a>
+        </div>
+    </div>
+
+</body>
+</html>
