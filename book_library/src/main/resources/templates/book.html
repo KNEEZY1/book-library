@@ -18,11 +18,11 @@
         </tr>
         <tr>
             <td><label>Автор:</label></td>
-            <td><span th:text="|${book.author.firstName} ${book.author.secondName}|"></td>
+            <a th:href="@{/author/getAuthor(id=${book.author.id})}" class="author-link" th:text="|${book.author.firstName} ${book.author.secondName}|"></a>
         </tr>
     </table>
     <br>
-    <form th:action="@{/removeBook(id=${book.id})}" method="post">
+    <form th:action="@{/book/removeBook(id=${book.id})}" method="post">
         <button type="submit">Удалить</button>
     </form>
 </body>

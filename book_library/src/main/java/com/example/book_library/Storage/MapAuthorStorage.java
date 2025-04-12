@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.book_library.Model.Author;
 
+@Repository
 public class MapAuthorStorage implements AuthorStorage {
 
     private final Map<Integer, Author> authors;
@@ -40,7 +43,11 @@ public class MapAuthorStorage implements AuthorStorage {
     
     @Override
     public void removeAuthor(int id) {
+        if(authors.containsKey(id)) {
         authors.remove(id);
+        } else {
+            throw new IllegalArgumentException("Автор не найден");
+        }
     }
 
     @Override

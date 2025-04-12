@@ -47,6 +47,4 @@ public class Author {
         return "Author [id = " + id + ", firstName = " + firstName + ", secondName = " + secondName + ", birthday = " + birthday
                 + " ]";
     }
-
-    
 }

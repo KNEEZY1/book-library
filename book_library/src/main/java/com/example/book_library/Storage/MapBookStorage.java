@@ -6,9 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.book_library.Model.Author;
 import com.example.book_library.Model.Book;
 
+@Repository
 public class MapBookStorage implements BookStorage {
 
     private final Map<Integer, Book> books;
