@@ -1,5 +1,4 @@
 package com.example.book_library.Controllers;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.book_library.Model.Book;
 import com.example.book_library.Services.BookService;
-
 import com.example.book_library.DTO.BookForm;
-
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -46,11 +43,17 @@ public class BookController {
             return "redirect:/";
         }
     }
-    // TODO: Добавить обработку исключения (как в авторе)
+
     @PostMapping("/removeBook{id}")
     public String postMethodName(@RequestParam("id") Integer id) {
+        try {
         bookService.removeBook(id);
         return "redirect:/";
+        }
+        catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/getByTitle{title}")
