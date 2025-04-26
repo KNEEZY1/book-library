@@ -30,7 +30,6 @@ public class BookController {
         return "redirect:/";
         }
 
-
     @GetMapping("/getBook{id}")
     public String getBook(@RequestParam("id") Integer id, Model model) {
         try {
@@ -45,7 +44,7 @@ public class BookController {
     }
 
     @PostMapping("/removeBook{id}")
-    public String postMethodName(@RequestParam("id") Integer id) {
+    public String removeBook(@RequestParam("id") Integer id) {
         try {
         bookService.removeBook(id);
         return "redirect:/";

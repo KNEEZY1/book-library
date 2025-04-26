@@ -40,6 +40,7 @@ public class AuthorController {
         }
     }
 
+    // ПЛОХО РАБОТАЕТ
     @PostMapping("/removeAuthor")
     public String removeAuthor(@RequestParam("id") Integer id) {
         try {

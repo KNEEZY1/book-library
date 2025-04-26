@@ -9,16 +9,18 @@ public class Book {
     private int year;
     private int pages;
     private Author author;
+    private Genre genre;
 
     public Book() {
 
     }
 
-    public Book(String title, int year, int pages, Author author) {
+    public Book(String title, int year, int pages, Author author, Genre genre) {
         this.title = title;
         this.year = year;
         this.pages = pages;
         this.author = author;
+        this.genre = genre;
     }
 
     public int getId() {
@@ -51,6 +53,13 @@ public class Book {
     public void setAuthor(Author author) {
         this.author = author;
     }
+    public Genre getGenre() {
+        return genre;
+    }
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
 
     @Override
     public String toString() {

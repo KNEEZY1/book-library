@@ -4,12 +4,15 @@ import org.springframework.stereotype.Service;
 import com.example.book_library.DTO.AuthorForm;
 import com.example.book_library.Model.Author;
 import com.example.book_library.Storage.AuthorStorage;
+import com.example.book_library.Storage.BookStorage;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class AuthorService {
-    private final AuthorStorage authorStorage;
+    private final AuthorStorage authorStorage;  
+    private final BookStorage bookStorage;
 
     public Collection<Author> getAuthors() {
         return authorStorage.getAll();
@@ -40,8 +43,9 @@ public class AuthorService {
         return author;
     }
 
-    // TODO: Удалить все книги перед удалением автора (получ список всех книг, пройтись по нему, где авторы совпадают там удалить и после этого удаление автора)    
     public void removeAuthor(Integer id) throws IllegalArgumentException {
+        Author author = authorStorage.getById(id);
+        bookStorage.removeByAuthor(author);
         authorStorage.removeAuthor(id);
     }
 }

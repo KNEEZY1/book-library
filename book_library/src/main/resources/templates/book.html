@@ -18,7 +18,12 @@
         </tr>
         <tr>
             <td><label>Автор:</label></td>
-            <a th:href="@{/author/getAuthor(id=${book.author.id})}" class="author-link" th:text="|${book.author.firstName} ${book.author.secondName}|"></a>
+            
+            <td><a th:href="@{/author/getAuthor(id=${book.author.id})}" class="author-link" th:text="|${book.author.firstName} ${book.author.secondName}|"></a></td>
+        </tr>
+        <tr>
+            <td><label>Жанр:</label></td>
+            <td><span th:text="${book.genre}"></td>
         </tr>
     </table>
     <br>
