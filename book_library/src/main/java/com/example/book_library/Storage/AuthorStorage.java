@@ -6,7 +6,8 @@ import com.example.book_library.Model.Author;
 public interface AuthorStorage {
     public Author addAuthor(Author author);
     public Author getById(Integer id);
-    public Author getByName(String firstName, String secondName);
+    // TODO Collection
+    public Collection<Author> getByName(String firstName, String secondName);
     public void removeAuthor(int id);
     public Collection<Author> getAll();   
 }

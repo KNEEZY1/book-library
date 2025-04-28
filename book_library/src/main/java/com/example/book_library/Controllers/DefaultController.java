@@ -23,6 +23,7 @@ public class DefaultController {
         model.addAttribute("authorForm", new AuthorForm());
         model.addAttribute("booksCount", bookService.getBooksCount());
         model.addAttribute("books", bookService.getBooks());
+        model.addAttribute("authorsCount", authorService.getAuthorsCount());
         model.addAttribute("authors", authorService.getAuthors());
         return "index";
     }

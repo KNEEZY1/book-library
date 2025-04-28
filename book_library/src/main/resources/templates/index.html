@@ -61,8 +61,8 @@
 
     <h1>Библиотека (<span th:text="${booksCount}">0</span>)</h1>
 
-    <form th:action="@{/book/getByTitle}" method = "get">
-        <input type="text" th:name="title">
+    <form th:action="@{/book/getByTitle(regexp=${regexp})}" method = "get">
+        <input type="text" th:name="regexp">
         <input type="submit" value="Поиск">
     </form>
     <hr>

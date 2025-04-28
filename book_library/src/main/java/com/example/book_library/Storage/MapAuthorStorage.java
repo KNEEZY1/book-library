@@ -1,12 +1,18 @@
 package com.example.book_library.Storage;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.book_library.Model.Author;
+import com.example.book_library.Model.Book;
 
 @Repository
 public class MapAuthorStorage implements AuthorStorage {
@@ -27,18 +33,29 @@ public class MapAuthorStorage implements AuthorStorage {
     }
 
     @Override
+    public Collection<Author> getAll() {
+        List<Author> sortedAuthors = new ArrayList<>(authors.values());
+        sortedAuthors.sort(null);
+        return sortedAuthors;
+    }
+
+    @Override
     public Author getById(Integer id) {
         return authors.get(id);
     }
         
     @Override
-    public Author getByName(String firstName, String secondName) {
+    public Collection<Author> getByName(String firstName, String secondName) {
+        Pattern pattern = Pattern.compile(secondName, Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        List<Author> resultList = new LinkedList<>();
         for (Author author : authors.values()) {
-            if (author.getFirstName().equals(firstName) && author.getSecondName().equals(secondName)) {
-                return author;
+            matcher = pattern.matcher(author.getSecondName().toLowerCase());
+            if(matcher.find()) {
+                resultList.add(author);
             }
         }
-        return null;
+        return resultList;
     }
     
     @Override
@@ -49,9 +66,4 @@ public class MapAuthorStorage implements AuthorStorage {
             throw new IllegalArgumentException("Автор не найден");
         }
     }
-
-    @Override
-        public Collection<Author> getAll() {
-            return authors.values();
-        }
 }

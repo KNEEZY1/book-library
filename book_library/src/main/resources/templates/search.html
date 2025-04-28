@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library</title>
+</head>
+<body>
+    <h1>Результат поиска (<span th:text="${booksCount}">0</span>)</h1>
+
+    <form th:action="@{/book/getByTitle(regexp=${regexp})}" method = "get">
+        <input type="text" th:name="regexp">
+        <input type="submit" value="Поиск">
+    </form>
+    <hr>
+
+    <div id="book-list">
+        <div th:each="book : ${books}">
+            <a th:href="@{/book/getBook(id=${book.id})}" class="book-link" th:text="${book.title}"></a>
+        </div>
+    </div>
+
+</body>
+</html> 

@@ -1,6 +1,6 @@
 package com.example.book_library.Model;
 
-public class Author {
+public class Author implements Comparable<Author> {
     private int id;
 
     private String firstName;
@@ -15,6 +15,15 @@ public class Author {
         this.firstName = firstName;
         this.secondName = secondName;
         this.birthday = birthday;
+    }
+
+    @Override
+    public int compareTo(Author o) {
+        int compare = this.firstName.compareTo(o.firstName);
+        if(compare == 0) {
+            compare = this.secondName.compareTo(o.secondName);
+        }
+        return compare;
     }
 
     public int getId() {

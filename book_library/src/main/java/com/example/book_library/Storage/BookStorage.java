@@ -9,7 +9,8 @@ public interface BookStorage {
     public void removeBook(int id);
     public void removeByAuthor(Author author);
     public Book getById(int id);
-    public Book getByTitle(String title);
+    public Collection<Book> getByTitle(String title);
     public Collection<Book> getByAuthor(String firstName, String secondName);
     public Collection<Book> getAll();
+    public Collection<Book> getAllSorted();
 }

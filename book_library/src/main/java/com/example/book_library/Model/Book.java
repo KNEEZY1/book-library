@@ -1,7 +1,7 @@
 package com.example.book_library.Model;
 
 
-public class Book {
+public class Book implements Comparable<Book> {
     
     private int id;
     
@@ -21,6 +21,11 @@ public class Book {
         this.pages = pages;
         this.author = author;
         this.genre = genre;
+    }
+    
+    @Override
+    public int compareTo(Book o) {
+        return this.title.compareTo(o.title);
     }
 
     public int getId() {

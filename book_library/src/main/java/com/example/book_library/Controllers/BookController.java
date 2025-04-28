@@ -1,4 +1,6 @@
 package com.example.book_library.Controllers;
+import java.util.Collection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,12 +57,14 @@ public class BookController {
         }
     }
 
-    @GetMapping("/getByTitle{title}")
-    public String getByTitle(@RequestParam("title") String title, Model model) {
+    @GetMapping("/getByTitle{regexp}")
+    public String getByTitle(@RequestParam("regexp") String regexp, Model model) {
         try {    
-            Book book = bookService.getBook(title);
-            model.addAttribute("book", book);
-            return "book";
+            Collection<Book> books = bookService.getBook(regexp);
+            model.addAttribute("books", books);
+            model.addAttribute("booksCount", books.size());
+            
+            return "search";
         }
         catch(IllegalArgumentException ex) {
             ex.printStackTrace();

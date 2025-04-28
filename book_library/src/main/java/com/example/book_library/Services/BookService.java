@@ -47,12 +47,12 @@ public class BookService {
         bookStorage.removeBook(id);
     }
 
-    public Book getBook(String title) throws IllegalArgumentException {
-        Book book = bookStorage.getByTitle(title);
-        if (book == null) {
+    public Collection<Book> getBook(String regexp) throws IllegalArgumentException {
+        Collection<Book> books = bookStorage.getByTitle(regexp);
+        if (books == null) {
             throw new IllegalArgumentException("Книга не найдена");
         }
-        return book;
+        return books;
     }
 
     public void removeAuthorsBook(Author author) {
