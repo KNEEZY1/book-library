@@ -22,6 +22,14 @@ public class AuthorService {
         return authorStorage.getAll().size();
     }
 
+    public Collection<Author> getByRegex(String regex) throws IllegalArgumentException {
+        Collection<Author> authors = authorStorage.getByRegex(regex);
+        if (authors == null) {
+            throw new IllegalArgumentException("Автор не найден");
+        }
+        return authors;
+    }
+
     public Author getByName(String firstName, String secondName) throws IllegalArgumentException {
         Author author = authorStorage.getByName(firstName, secondName);
         if (author == null) {

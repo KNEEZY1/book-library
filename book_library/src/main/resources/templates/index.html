@@ -28,7 +28,12 @@
                 </tr>
                 <tr>
                     <td><label>Жанр:</label></td>
-                    <td><input type="text" th:field="*{genre}"></td>
+                    <td>
+                            <select name="genre">
+                            <option th:each="genreOpt : ${T(com.example.book_library.Model.Genre).values()}" 
+                                th:value="${genreOpt}" th:text="${genreOpt.getTitle}"></option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <hr>
@@ -74,6 +79,10 @@
     </div>
 
     <h1>Авторы (<span th:text="${authorsCount}">0</span>)</h1>
+    <form th:action="@{/author/getByRegex(regex=${regex})}" method = "get">
+        <input type="text" th:name="regex">
+        <input type="submit" value="Поиск">
+    </form>
     <hr>
     <div id="author-list">
         <div th:each="author : ${authors}">

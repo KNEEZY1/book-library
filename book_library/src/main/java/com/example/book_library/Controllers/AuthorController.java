@@ -1,10 +1,13 @@
 package com.example.book_library.Controllers;
+import java.util.Collection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.book_library.Model.Author;
+import com.example.book_library.Model.Book;
 import com.example.book_library.Storage.AuthorStorage;
 import com.example.book_library.DTO.AuthorForm;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +42,22 @@ public class AuthorController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("/getByRegex{regex}")
+    public String getByRegex(@RequestParam("regex") String regex, Model model) {
+        try {    
+            Collection<Author> authors = authorService.getByRegex(regex);
+            model.addAttribute("authors", authors);
+            model.addAttribute("authorsCount", authors.size());
+            
+            return "author_search";
+        }
+        catch(IllegalArgumentException ex) {
+            ex.printStackTrace();
+            return "redirect:/";
+        }
+    }
+    
 
     // ПЛОХО РАБОТАЕТ
     @PostMapping("/removeAuthor")

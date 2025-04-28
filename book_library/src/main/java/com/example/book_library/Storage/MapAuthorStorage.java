@@ -45,17 +45,28 @@ public class MapAuthorStorage implements AuthorStorage {
     }
         
     @Override
-    public Collection<Author> getByName(String firstName, String secondName) {
-        Pattern pattern = Pattern.compile(secondName, Pattern.CASE_INSENSITIVE);
+    public Collection<Author> getByRegex(String regex) {
+        Pattern pattern = Pattern.compile(regex.toLowerCase());
         Matcher matcher;
         List<Author> resultList = new LinkedList<>();
         for (Author author : authors.values()) {
-            matcher = pattern.matcher(author.getSecondName().toLowerCase());
+            String name = author.getFirstName() + " " + author.getSecondName();
+            matcher = pattern.matcher(name.toLowerCase());
             if(matcher.find()) {
                 resultList.add(author);
             }
         }
         return resultList;
+    }
+
+    @Override
+    public Author getByName(String firstName, String secondName) {
+        for(Author author : authors.values()) {
+            if(author.getFirstName().equals(firstName) && author.getSecondName().equals(secondName)) {
+                return author;
+            }
+        }
+        return null;
     }
     
     @Override

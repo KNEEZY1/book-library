@@ -30,7 +30,7 @@ public class BookService {
             bookForm.getYear(),
             bookForm.getPages(),
             author, 
-            Genre.valueOf(bookForm.getGenre())
+            bookForm.getGenre() 
         );
         bookStorage.addBook(book);
     }

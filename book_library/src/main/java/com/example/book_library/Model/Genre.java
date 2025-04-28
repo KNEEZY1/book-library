@@ -3,7 +3,7 @@ package com.example.book_library.Model;
 public enum Genre {
         FICTION("Художественная литература"),
         NON_FICTION("Нон-фикшн"),
-        FANTASY("Fantasy"),
+        FANTASY("Фантастика"),
         SCIENCE("Научная литература"),
         HISTORY("История"),
         ROMANCE("Романтика");

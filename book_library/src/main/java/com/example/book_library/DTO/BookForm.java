@@ -1,4 +1,6 @@
 package com.example.book_library.DTO;
+import com.example.book_library.Model.Genre;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +13,5 @@ public class BookForm {
     private int year;
     private int pages;
     private String author;
-    private String genre; 
+    private Genre genre; 
 }
